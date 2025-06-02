@@ -16,7 +16,7 @@ def initialize_session_state() -> None:
         st.session_state.game_started = False
         st.session_state.player_name = ""
         st.session_state.player_symbol = HUMAN_SYMBOL
-        st.session_state.bot_difficulty = "facile" # Tradotto
+        st.session_state.bot_difficulty = "facile" 
         st.session_state.board_obj = Board()
         st.session_state.player1_obj = None
         st.session_state.player2_obj = None
@@ -122,14 +122,13 @@ st.title("🎲 Gioco del Tris 🎲")
 
 initialize_session_state()
 
-# --- Schermata di configurazione iniziale ---
+# Schermata di configurazione iniziale 
 if not st.session_state.game_started:
     st.header("Configura la tua partita")
 
     player_name_input: str = st.text_input("Scegli il tuo Nickname:", st.session_state.player_name if st.session_state.player_name else "Giocatore")
     player_symbol_radio: str = st.radio("Scegli il tuo Simbolo:", ("X", "O"), index=0 if st.session_state.player_symbol == "X" else 1)
     
-    # Traduzione delle opzioni per la difficoltà
     bot_difficulty_options = {"facile": "facile", "medio": "medio", "difficile": "difficile"}
     bot_difficulty_select: str = st.selectbox(
         "Difficoltà della Partita:", 
@@ -140,11 +139,11 @@ if not st.session_state.game_started:
     if st.button("Inizia Partita", type="primary"):
         st.session_state.player_name = player_name_input
         st.session_state.player_symbol = player_symbol_radio
-        st.session_state.bot_difficulty = bot_difficulty_select # Mantieni il valore tradotto
+        st.session_state.bot_difficulty = bot_difficulty_select 
         st.session_state.game_started = True
         start_new_game()
 else:
-    # --- Schermata di gioco ---
+    # Schermata di gioco 
     game: Game = st.session_state.game_obj
 
     st.header(f"Partita in corso: {game.player1.get_name()} ({game.player1.get_symbol()}) vs {game.player2.get_name()} ({game.player2.get_symbol()})")
