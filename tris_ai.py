@@ -3,7 +3,7 @@ import random
 import time
 import sys
 import os
-from openai import OpenAI
+import openai
 from typing import List, Tuple, Optional # Importa i tipi necessari
 
 # Costanti del Gioco
@@ -11,9 +11,7 @@ HUMAN_SYMBOL: str = "X"
 AI_SYMBOL: str = "O"
 EMPTY_CELL: str = ""
 
-# ATTENZIONE: NON lasciare la tua API key direttamente nel codice per la produzione.
-# Utilizza st.secrets o variabili d'ambiente.
-client = OpenAI()
+openai.api_key='sk-proj-oM72ZMoNV9NfbfhEfDkuP4Z02jyo3bE2qVWnpCodjbOhWHVq6DK39tdrz-4j5E9GFN1X5h9KET3BlbkFJzan2YwCE7tNxRKkjf2tjxP_jz7pbq6wfKEKyHBPxAuP3nJ02e5yRgBT3ElaeNvaolBL7L8l-UA'
 
 # Classi del Gioco
 
@@ -94,17 +92,17 @@ class HumanPlayer(Player):
         pass
 
 class BotPlayer(Player):
-    def __init__(self, name: str, symbol: str, difficulty: str = "easy") -> None:
+    def __init__(self, name: str, symbol: str, difficulty: str = "facile") -> None:
         super().__init__(name, symbol)
         self._difficulty: str = difficulty
 
     def make_move(self, board: Board) -> Optional[Tuple[int, int]]:
         time.sleep(0.5) # Simula il "pensiero" del bot
-        if self._difficulty == "easy":
+        if self._difficulty == "facile":
             return self._get_easy_move(board)
-        elif self._difficulty == "medium":
+        elif self._difficulty == "medio":
             return self._get_medium_move(board)
-        elif self._difficulty == "hard":
+        elif self._difficulty == "difficile":
             return self._get_hard_move(board)
         else:
             return self._get_easy_move(board)
@@ -133,7 +131,7 @@ class BotPlayer(Player):
                         return (r, c)
                     current_grid[r][c] = EMPTY_CELL # Reset per la prossima iterazione
 
-        # Controlla se l'avversario può vincere e bloccalo
+    
         opponent_symbol: str = HUMAN_SYMBOL if self.get_symbol() == AI_SYMBOL else AI_SYMBOL
         for r in range(3):
             for c in range(3):
@@ -167,7 +165,7 @@ Assicurati che la mossa sia valida (la cella deve essere vuota).
 Rispondi solo con la riga e la colonna separate da una virgola, senza testo aggiuntivo.
 """
         try:
-            response = client.chat.completions.create(
+            response = openai.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": "Sei un esperto giocatore di Tic-Tac-Toe."},
@@ -183,11 +181,11 @@ Rispondi solo con la riga e la colonna separate da una virgola, senza testo aggi
             if board.is_valid_move(row, col):
                 return (row, col)
             else:
-                st.warning(f"L'AI ha suggerito una mossa non valida ({row},{col}). Torno alla mossa 'medium'.")
+                st.warning(f"L'AI ha suggerito una mossa non valida ({row},{col}). Torno alla mossa 'medio'.")
                 return self._get_medium_move(board)
 
         except Exception as e:
-            st.error(f"Errore durante la comunicazione con OpenAI: {e}. Il bot userà la difficoltà 'medium'.")
+            st.error(f"Errore durante la comunicazione con OpenAI: {e}. Il bot userà la difficoltà 'medio'.")
             return self._get_medium_move(board)
 
     def _format_board_for_ai(self, grid: List[List[str]]) -> str:
@@ -238,7 +236,7 @@ def initialize_session_state() -> None:
         st.session_state.game_started = False
         st.session_state.player_name = ""
         st.session_state.player_symbol = HUMAN_SYMBOL
-        st.session_state.bot_difficulty = "easy"
+        st.session_state.bot_difficulty = "facile" # Tradotto
         st.session_state.board_obj = Board()
         st.session_state.player1_obj = None
         st.session_state.player2_obj = None
@@ -333,31 +331,38 @@ def announce_result(result: str) -> None:
             st.session_state.message = f"🎉 {winner_name} ha vinto! 🎉"
         else:
             st.session_state.message = f"🤖 {winner_name} ha vinto! 🤖"
-
-# --- Interfaccia Streamlit ---
+#Interfaccia Streamlit 
+import streamlit
 
 st.set_page_config(layout="centered", page_title="Tris con Streamlit")
 
-st.title("🎲 Tris (Tic-Tac-Toe) 🎲")
+st.title("🎲 Gioco del Tris 🎲")
 
 initialize_session_state()
 
-# --- Schermata di configurazione iniziale ---
+# Schermata di configurazione iniziale 
 if not st.session_state.game_started:
     st.header("Configura la tua partita")
 
     player_name_input: str = st.text_input("Scegli il tuo Nickname:", st.session_state.player_name if st.session_state.player_name else "Giocatore")
     player_symbol_radio: str = st.radio("Scegli il tuo Simbolo:", ("X", "O"), index=0 if st.session_state.player_symbol == "X" else 1)
-    bot_difficulty_select: str = st.selectbox("Difficoltà del Bot:", ("easy", "medium", "hard"), index=["easy", "medium", "hard"].index(st.session_state.bot_difficulty))
+    
+    # Traduzione delle opzioni per la difficoltà
+    bot_difficulty_options = {"facile": "facile", "medio": "medio", "difficile": "difficile"}
+    bot_difficulty_select: str = st.selectbox(
+        "Difficoltà della Partita:", 
+        list(bot_difficulty_options.keys()), 
+        index=list(bot_difficulty_options.keys()).index(st.session_state.bot_difficulty)
+    )
 
     if st.button("Inizia Partita", type="primary"):
         st.session_state.player_name = player_name_input
         st.session_state.player_symbol = player_symbol_radio
-        st.session_state.bot_difficulty = bot_difficulty_select
+        st.session_state.bot_difficulty = bot_difficulty_select # Mantieni il valore tradotto
         st.session_state.game_started = True
         start_new_game()
 else:
-    # --- Schermata di gioco ---
+    # Schermata di gioco 
     game: Game = st.session_state.game_obj
 
     st.header(f"Partita in corso: {game.player1.get_name()} ({game.player1.get_symbol()}) vs {game.player2.get_name()} ({game.player2.get_symbol()})")
