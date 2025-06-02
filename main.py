@@ -1,5 +1,4 @@
 import streamlit as st
-import openai
 from typing import List, Tuple, Optional
 from constants import HUMAN_SYMBOL, AI_SYMBOL, EMPTY_CELL
 from board import Board
@@ -7,7 +6,6 @@ from human_player import HumanPlayer
 from bot_player import BotPlayer
 from game import Game
 
-openai.api_key='sk-proj-oM72ZMoNV9NfbfhEfDkuP4Z02jyo3bE2qVWnpCodjbOhWHVq6DK39tdrz-4j5E9GFN1X5h9KET3BlbkFJzan2YwCE7tNxRKkjf2tjxP_jz7pbq6wfKEKyHBPxAuP3nJ02e5yRgBT3ElaeNvaolBL7L8l-UA'
 
 
 def initialize_session_state() -> None:
