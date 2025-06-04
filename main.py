@@ -99,6 +99,16 @@ def announce_result(result: str) -> None:
 
 #Interfaccia Streamlit 
 st.set_page_config(layout="centered", page_title="🎲 Gioco del Tris")
+st. markdown(
+    """
+    <style>
+    body {
+        background-color: #f0f8ff;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown("<h1 style='text-align: center; color: #FF4B4B;'>✨ Gioco del Tris ✨</h1>", unsafe_allow_html=True)
 
