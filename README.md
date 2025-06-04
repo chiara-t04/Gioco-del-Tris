@@ -71,7 +71,8 @@ Per abilitare la difficoltà **"difficile"**, è necessario installare e avviare
 ollama run llama3
 ```
 
-Assicurati che sia accessibile su `http://localhost:11434`.
+Non accessibile su `http://localhost:11434`.  
+La modalità “difficile” non può funzionare perché Ollama non è accessibile da remoto (Streamlit Cloud)
 
 ---
 
