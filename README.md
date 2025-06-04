@@ -1,4 +1,4 @@
-# ✨ Gioco del Tris (Tic-Tac-Toe con Streamlit & Console)
+# Gioco del Tris ( con Streamlit & Console)
 
 Un'applicazione Python del classico **Gioco del Tris (Tic-Tac-Toe)** con:
 - Interfaccia **Streamlit** per il gioco da browser
@@ -9,18 +9,18 @@ Un'applicazione Python del classico **Gioco del Tris (Tic-Tac-Toe)** con:
 
 ---
 
-## 🚀 Caratteristiche Principali
+##  Caratteristiche Principali
 
-- ✅ Gioca contro un **bot intelligente** con difficoltà: *facile*, *medio*, *difficile*
-- 🧠 In modalità *difficile*, il bot si appoggia all'intelligenza artificiale Ollama
-- 📦 Interfaccia **web** realizzata con [Streamlit](https://streamlit.io/)
-- 🎮 Modalità **testuale** eseguibile da terminale
-- 🔁 Sistema Observer/Subject per notificare lo stato del gioco
-- 🧪 Pulito, testabile e facilmente estendibile
+- Gioca contro un **bot intelligente** con difficoltà: *facile*, *medio*, *difficile*
+- In modalità *difficile*, il bot si appoggia all'intelligenza artificiale Ollama
+- Interfaccia **web** realizzata con [Streamlit](https://streamlit.io/)
+-  Modalità **testuale** eseguibile da terminale
+- Sistema Observer/Subject per notificare lo stato del gioco
+- Pulito, testabile e facilmente estendibile
 
 ---
 
-## 📁 Struttura del Progetto
+##  Struttura del Progetto
 
 ```
 .
@@ -37,7 +37,7 @@ Un'applicazione Python del classico **Gioco del Tris (Tic-Tac-Toe)** con:
 
 ---
 
-## ⚙️ Requisiti
+##  Requisiti
 
 Installa le dipendenze:
 
@@ -47,15 +47,15 @@ pip install streamlit requests
 
 ---
 
-## ▶️ Esecuzione
+##  Esecuzione
 
-### 🌐 Interfaccia Web (Streamlit)
+###  Interfaccia Web (Streamlit)
 
 ```bash
 streamlit run main.py
 ```
 
-### 🖥️ Modalità Console
+###  Modalità Console
 
 ```bash
 python console_game.py
@@ -63,7 +63,7 @@ python console_game.py
 
 ---
 
-## 🤖 Integrazione con Ollama (opzionale)
+##  Integrazione con Ollama (opzionale)
 
 Per abilitare la difficoltà **"difficile"**, è necessario installare e avviare **Ollama**:
 
@@ -75,7 +75,7 @@ Assicurati che sia accessibile su `http://localhost:11434`.
 
 ---
 
-## 📌 Design Pattern Utilizzati
+##  Design Pattern Utilizzati
 
 - **Strategy Pattern**: seleziona dinamicamente la strategia del bot (*Easy*, *Medium*, *Hard*)
 - **Observer Pattern**: aggiorna dinamicamente l’interfaccia (*console* o *Streamlit*) quando il turno cambia
@@ -83,13 +83,9 @@ Assicurati che sia accessibile su `http://localhost:11434`.
 
 ---
 
-## 📸 Esempio UI (Streamlit)
 
-![Screenshot UI](https://user-images.githubusercontent.com/your-path/screenshot.png) <!-- Sostituire con un'immagine reale se disponibile -->
 
----
-
-## 🧑‍💻 Autori
+##  Autori
 
 - Sviluppato come progetto educativo per mostrare l'uso di **Streamlit**, **design pattern** e **AI integration**.
 
