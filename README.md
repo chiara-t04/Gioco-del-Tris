@@ -1,4 +1,4 @@
-# ✨ Gioco del Tris (Tic-Tac-Toe con Streamlit & Console)
+# Gioco del Tris ( con Streamlit & Console)
 
 Un'applicazione Python del classico **Gioco del Tris (Tic-Tac-Toe)** con:
 - Interfaccia **Streamlit** per il gioco da browser
@@ -9,14 +9,14 @@ Un'applicazione Python del classico **Gioco del Tris (Tic-Tac-Toe)** con:
 
 ---
 
-## 🚀 Caratteristiche Principali
+## Caratteristiche Principali
 
-- ✅ Gioca contro un **bot intelligente** con difficoltà: *facile*, *medio*, *difficile*
-- 🧠 In modalità *difficile*, il bot si appoggia all'intelligenza artificiale Ollama
-- 📦 Interfaccia **web** realizzata con [Streamlit](https://streamlit.io/)
-- 🎮 Modalità **testuale** eseguibile da terminale
-- 🔁 Sistema Observer/Subject per notificare lo stato del gioco
-- 🧪 Pulito, testabile e facilmente estendibile
+- Gioca contro un **bot intelligente** con difficoltà: *facile*, *medio*, *difficile*
+- In modalità *difficile*, il bot si appoggia all'intelligenza artificiale Ollama
+- Interfaccia **web** realizzata con [Streamlit](https://streamlit.io/)
+- Modalità **testuale** eseguibile da terminale
+- Sistema Observer/Subject per notificare lo stato del gioco
+- Pulito, testabile e facilmente estendibile
 
 ---
 
@@ -39,7 +39,7 @@ Modifica
 
 ---
 
-## 🧠 Strategie del Bot
+## Strategie del Bot
 
 | Difficoltà | Descrizione |
 |------------|-------------|
@@ -49,43 +49,25 @@ Modifica
 
 ---
 
-## ⚙️ Requisiti
+##  Requisiti
 
 - Python 3.8+
 - [Streamlit](https://streamlit.io/)
 - `requests` (per integrazione con Ollama AI)
 - Ollama installato e in ascolto su `localhost:11434`
 
+## ⚙️ Requisiti
+
 Installa le dipendenze:
 
 ```bash
 pip install streamlit requests
-▶️ Esecuzione
-🌐 Interfaccia Web (Streamlit)
-bash
-Copia
-Modifica
+
+## Esecuzione
+# Interfaccia Web (Streamlit)
+```bash
 streamlit run main.py
-🖥️ Modalità Console
-bash
-Copia
-Modifica
-python console_game.py
-🤖 Integrazione con Ollama (opzionale)
-Per abilitare la difficoltà "difficile", è necessario installare e avviare Ollama:
 
-bash
-Copia
-Modifica
-ollama run llama3
-Assicurati che sia accessibile su http://localhost:11434.
-
-📌 Design Pattern Utilizzati
-Strategy Pattern: seleziona dinamicamente la strategia del bot (Easy, Medium, Hard)
-
-Observer Pattern: aggiorna dinamicamente l’interfaccia (console o Streamlit) quando il turno cambia
-
-Facade: OllamaMoveFacade incapsula la comunicazione con l’AI esterna
 
 📸 Esempio UI (Streamlit)
 <!-- Sostituire con un'immagine reale se disponibile -->
